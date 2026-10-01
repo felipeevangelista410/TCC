@@ -53,7 +53,7 @@ function AiWidget() {
         >
           <header className="ai-widget__header">
             <div>
-              <p className="ai-widget__title">Suporte com IA</p>
+              <p className="ai-widget__title">Suporte Virtual</p>
               <p className="ai-widget__subtitle">Como posso ajudar?</p>
             </div>
             <button
