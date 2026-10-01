@@ -1,0 +1,14 @@
+/*
+  Espaço reservado para o header fixo, aplicado a todo o conteúdo
+  das rotas para que nada fique escondido atrás do cabeçalho.
+*/
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100svh;
+}
+
+#root > main {
+  padding-top: var(--header-h);
+  flex: 1;
+}

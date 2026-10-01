@@ -1,0 +1,151 @@
+.pf-carousel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-5);
+}
+
+.pf-carousel__row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  width: 100%;
+}
+
+.pf-track {
+  position: relative;
+  flex: 1;
+  min-height: 220px;
+  overflow: hidden;
+  touch-action: pan-y;
+  cursor: grab;
+  border-radius: var(--radius-lg);
+}
+
+.pf-track:active {
+  cursor: grabbing;
+}
+
+.pf-track:focus-visible {
+  outline: 2px solid var(--brand-red);
+  outline-offset: 6px;
+}
+
+/* Enquanto o usuário arrasta, a posição segue o dedo/mouse
+   instantaneamente, sem a transição suave (que só entra ao soltar). */
+.pf-track:not(.is-dragging) .pf-slide {
+  transition: transform 600ms var(--ease-standard), filter 600ms var(--ease-standard),
+    opacity 600ms var(--ease-standard), width 600ms var(--ease-standard),
+    height 600ms var(--ease-standard);
+}
+
+/* slides */
+.pf-slide {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 45%;
+  border: 0;
+  padding: 0;
+  background: var(--color-bg-alt);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.pf-slide.is-center {
+  cursor: default;
+  box-shadow: var(--shadow-lg);
+}
+
+.pf-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  pointer-events: none;
+  user-select: none;
+}
+
+.pf-slide:focus-visible {
+  outline: 2px solid var(--brand-red);
+  outline-offset: 3px;
+}
+
+.pf-arrow {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--color-border-soft);
+  background: #fff;
+  color: var(--color-ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  z-index: 20;
+  transition: transform var(--dur-fast) var(--ease-standard),
+    border-color var(--dur-fast) ease, color var(--dur-fast) ease;
+}
+
+.pf-arrow:hover {
+  border-color: var(--brand-red);
+  color: var(--brand-red);
+  transform: scale(1.06);
+}
+
+.pf-arrow:active {
+  transform: scale(0.94);
+}
+
+/* dots */
+.pf-dots {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.pf-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 0;
+  padding: 0;
+  background: var(--color-border);
+  cursor: pointer;
+  transition: background-color var(--dur-fast) ease, transform var(--dur-fast) ease;
+}
+
+.pf-dot:hover {
+  background: var(--color-ink-muted);
+}
+
+.pf-dot.is-active {
+  background: var(--brand-red);
+  transform: scale(1.25);
+}
+
+@media (max-width: 640px) {
+  .pf-carousel__row {
+    gap: var(--space-2);
+  }
+  .pf-arrow {
+    width: 34px;
+    height: 34px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pf-track:not(.is-dragging) .pf-slide {
+    transition: none;
+  }
+  .pf-arrow,
+  .pf-dot {
+    transition: none;
+  }
+}

@@ -1,0 +1,193 @@
+/* variáveis usadas em todo o site — cores, espaçamento, tipografia etc */
+:root {
+  --color-bg: #ffffff;
+  --color-bg-alt: #f5f5f7;
+  --color-ink: #1d1d1f;
+  --color-ink-soft: #515154;
+  --color-ink-muted: #86868b;
+  --color-border: #d2d2d7;
+  --color-border-soft: #e8e8ed;
+
+  --brand-red: #d5232a;
+  --brand-red-dark: #a4181e;
+  --brand-red-soft: #fbe6e6;
+  --color-dark: #111113;
+
+  --color-on-dark: #f5f5f7;
+  --color-on-dark-soft: #b7b7bd;
+
+  --font-sans: "Barlow", -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto,
+    Helvetica, Arial, sans-serif;
+  --fs-xs: 0.8rem;
+  --fs-sm: 0.9rem;
+  --fs-base: 1rem;
+  --fs-md: 1.15rem;
+  --fs-lg: 1.5rem;
+  --fs-xl: clamp(1.75rem, 3vw, 2.5rem);
+  --fs-2xl: clamp(2.25rem, 4.5vw, 3.5rem);
+  --fs-3xl: clamp(2.75rem, 6vw, 4.75rem);
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+  --space-10: 128px;
+
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-pill: 999px;
+
+  /* sombras suaves: só onde um elemento realmente precisa "descolar" do fundo */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04), 0 1px 1px rgba(0, 0, 0, 0.03);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.10);
+  --shadow-red: 0 4px 12px rgba(213, 35, 42, 0.2);
+
+  --container-max: 1200px;
+  --container-pad: clamp(20px, 5vw, 64px);
+  --header-h: 80px;
+  --header-h-scrolled: 64px;
+
+  --ease-standard: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur-fast: 180ms;
+  --dur-base: 260ms;
+  --dur-slow: 480ms;
+}
+
+/* reset básico */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  overflow-x: hidden;
+  font-family: var(--font-sans);
+  color: var(--color-ink);
+  background: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+}
+
+button {
+  font-family: inherit;
+}
+
+/* Estado de foco visível e consistente para acessibilidade */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--brand-red);
+  outline-offset: 2px;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--container-pad);
+}
+
+/* usados em várias páginas: título de seção, "eyebrow" etc */
+.section {
+  padding-block: var(--space-9);
+}
+
+.section-header {
+  max-width: 640px;
+  margin: 0 auto var(--space-7);
+  text-align: center;
+}
+
+.eyebrow {
+  color: var(--brand-red);
+  font-weight: 700;
+  font-size: var(--fs-xs);
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  margin: 0 0 var(--space-3);
+}
+
+.section-header h2 {
+  font-size: var(--fs-xl);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--color-ink);
+  margin: 0;
+}
+
+/* Entrada ao rolar a página (IntersectionObserver em useScrollReveal).
+   Usa animation (e não transition) para não brigar com os hovers dos cards
+   e para o atraso escalonado não afetar o hover depois. O estado final fica
+   no próprio elemento, então transform de hover continua funcionando. */
+.reveal {
+  opacity: 0;
+}
+.reveal.is-visible {
+  opacity: 1;
+  animation: reveal-up var(--dur-slow) var(--ease-standard) backwards;
+}
+.reveal--fade.is-visible {
+  animation-name: reveal-fade;
+}
+.reveal--zoom.is-visible {
+  animation-name: reveal-zoom;
+}
+.reveal-delay-1 { animation-delay: 80ms; }
+.reveal-delay-2 { animation-delay: 160ms; }
+.reveal-delay-3 { animation-delay: 240ms; }
+
+@keyframes reveal-up {
+  from { opacity: 0; transform: translateY(16px); }
+}
+@keyframes reveal-fade {
+  from { opacity: 0; }
+}
+@keyframes reveal-zoom {
+  from { opacity: 0; transform: scale(0.97); }
+}
+
+/* Respeita a preferência do usuário por menos movimento */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    opacity: 1;
+  }
+  .reveal.is-visible {
+    animation: none;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

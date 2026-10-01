@@ -1,0 +1,427 @@
+/* ===== Quem somos =====
+   Seções simples com cores de contraste da marca:
+   branco (hero), preto (história), vermelho (antes e depois), cinza claro (fundadora). */
+.sobre-page section {
+  padding-block: var(--space-9);
+}
+
+/* ---- Hero: texto e fatos à esquerda, fachada em tamanho nativo à direita ---- */
+.sobre-page .sobre-hero {
+  padding-block: var(--space-8) var(--space-10);
+}
+
+.sobre-hero__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-9);
+  align-items: center;
+}
+
+.sobre-hero .eyebrow {
+  margin-bottom: var(--space-5);
+}
+
+.sobre-hero h1 {
+  margin: 0 0 var(--space-6);
+  font-size: clamp(4.5rem, 9vw, 8rem);
+  font-weight: 700;
+  letter-spacing: -0.045em;
+  line-height: 0.9;
+  color: var(--color-ink);
+}
+
+.sobre-hero__lead {
+  margin: 0;
+  max-width: 52ch;
+  font-size: var(--fs-md);
+  line-height: 1.75;
+  color: var(--color-ink-soft);
+}
+
+/* fatos da empresa: texto corrido em grade simples, sem faixa de "estatísticas" */
+.sobre-fatos {
+  list-style: none;
+  margin: var(--space-7) 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-5) var(--space-6);
+  max-width: 460px;
+}
+
+.sobre-fatos li {
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--color-border);
+}
+
+.sobre-fatos strong {
+  display: block;
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  color: var(--color-ink);
+}
+
+.sobre-fatos span {
+  display: block;
+  margin-top: var(--space-1);
+  font-size: var(--fs-sm);
+  color: var(--color-ink-soft);
+}
+
+/* a foto mantém a proporção original e nunca passa da largura real, para não perder nitidez */
+.sobre-hero__media {
+  margin: 0;
+  width: 100%;
+  max-width: 600px;
+  justify-self: end;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--color-bg-alt);
+}
+
+.sobre-hero__media img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1200 / 825;
+  object-fit: cover;
+}
+
+/* ---- Nossa história: lista simples sobre fundo preto ---- */
+.sobre-page .sobre-historia {
+  background: var(--color-dark);
+  color: var(--color-on-dark);
+  padding-block: var(--space-10);
+}
+
+.sobre-historia__head {
+  margin-bottom: var(--space-8);
+}
+
+.sobre-historia .eyebrow {
+  margin-bottom: var(--space-4);
+  color: var(--color-on-dark-soft);
+}
+
+.sobre-historia h2 {
+  margin: 0;
+  font-size: var(--fs-2xl);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  color: #fff;
+}
+
+.sobre-historia__lista {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.sobre-historia__item {
+  display: grid;
+  grid-template-columns: 72px 1fr 1.5fr;
+  gap: var(--space-6);
+  align-items: start;
+  padding-block: var(--space-7);
+  border-top: 1px solid #ffffff24;
+}
+
+.sobre-historia__item:last-child {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.sobre-historia__num {
+  font-size: var(--fs-lg);
+  font-weight: 700;
+  line-height: 1.2;
+  font-variant-numeric: tabular-nums;
+  color: var(--brand-red);
+}
+
+.sobre-historia__item h3 {
+  margin: 0;
+  font-size: var(--fs-xl);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  color: #fff;
+}
+
+.sobre-historia__item p {
+  margin: 0;
+  max-width: 56ch;
+  font-size: var(--fs-md);
+  line-height: 1.75;
+  color: var(--color-on-dark-soft);
+}
+
+/* ---- Antes e depois: título ao lado, comparação em tamanho que preserva a nitidez ---- */
+.sobre-page .sobre-transformacao {
+   background: var(--color-dark);
+  color: #fff;
+  padding-block: var(--space-10);
+}
+
+.sobre-transformacao .eyebrow {
+  margin-bottom: var(--space-4);
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.sobre-transformacao__grid {
+  display: grid;
+  grid-template-columns: 5fr 7fr;
+  gap: var(--space-9);
+  align-items: center;
+}
+
+.sobre-transformacao__texto h2 {
+  margin: 0;
+  font-size: var(--fs-2xl);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  text-wrap: balance;
+  color: #fff;
+}
+
+
+.sobre-compare {
+  position: relative;
+  width: 140%;
+  height: 80vh;
+  max-width:650px;
+  justify-self: end;
+  aspect-ratio: 5 / 4;
+  border-radius: 30px;
+  overflow: hidden;
+  
+  user-select: none;
+  
+}
+
+.sobre-compare__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  max-width: none;
+}
+
+img.sobre-compare__img[alt*='depois'] {
+  object-position: 50% 24%;
+}
+
+.sobre-compare__before {
+  position: absolute;
+  inset: 0;
+  clip-path: inset(0 calc(100% - var(--pos)) 0 0);
+}
+
+/* rótulos nos cantos inferiores */
+.sobre-compare__tag {
+  position: absolute;
+  bottom: var(--space-4);
+  z-index: 2;
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  color: #fff;
+  background: rgba(17, 17, 19, 0.72);
+}
+.sobre-compare__tag--before {
+  left: var(--space-4);
+}
+.sobre-compare__tag--after {
+  right: var(--space-4);
+}
+
+.sobre-compare__line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--pos);
+  width: 2px;
+  margin-left: -1px;
+  background: #fff;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.sobre-compare__handle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 44px;
+  height: 44px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: #fff;
+  color: var(--color-ink);
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  box-shadow: var(--shadow-md);
+}
+
+.sobre-compare__range {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: ew-resize;
+  z-index: 3;
+  touch-action: pan-y;
+}
+
+.sobre-compare:focus-within {
+  outline: 2px solid var(--brand-red);
+  outline-offset: 4px;
+}
+
+/* ---- Fundadora ---- */
+.sobre-page .sobre-fundadora {
+  background: var(--color-bg-alt);
+  padding-block: var(--space-10);
+}
+
+.sobre-fundadora__grid {
+  display: grid;
+  grid-template-columns: 5fr 7fr;
+  gap: var(--space-9);
+  align-items: center;
+}
+
+/* foto com resposta ao passar o mouse: sobe um pouco e a imagem aproxima devagar */
+.sobre-fundadora__foto {
+  margin: 0;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  transition: transform var(--dur-base) var(--ease-standard),
+    box-shadow var(--dur-base) var(--ease-standard);
+}
+
+.sobre-fundadora__foto img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: 50% 20%;
+  transition: transform var(--dur-slow) var(--ease-standard);
+}
+
+@media (hover: hover) {
+  .sobre-fundadora__foto:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+  }
+  .sobre-fundadora__foto:hover img {
+    transform: scale(1.04);
+  }
+}
+
+.sobre-fundadora__texto h2 {
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.sobre-fundadora__cargo {
+  margin: var(--space-2) 0 var(--space-6);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--color-ink-muted);
+}
+
+.sobre-fundadora__texto blockquote {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.sobre-fundadora__texto blockquote p {
+  margin: 0;
+  max-width: 58ch;
+  font-size: var(--fs-md);
+  line-height: 1.75;
+  color: var(--color-ink-soft);
+}
+
+/* ---- Tablet ---- */
+@media (max-width: 1024px) {
+  .sobre-hero__grid,
+  .sobre-transformacao__grid,
+  .sobre-fundadora__grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-7);
+  }
+
+  .sobre-hero__media,
+  .sobre-compare {
+    justify-self: start;
+  }
+
+  .sobre-fundadora__foto {
+    max-width: 480px;
+  }
+
+  .sobre-historia__item {
+    grid-template-columns: 56px 1fr;
+    gap: var(--space-3) var(--space-5);
+  }
+  .sobre-historia__item p {
+    grid-column: 2;
+  }
+}
+
+/* ---- Mobile ---- */
+@media (max-width: 640px) {
+  .sobre-page section {
+    padding-block: var(--space-8);
+  }
+  .sobre-page .sobre-hero {
+    padding-block: var(--space-6) var(--space-8);
+  }
+  .sobre-page .sobre-historia,
+  .sobre-page .sobre-transformacao,
+  .sobre-page .sobre-fundadora {
+    padding-block: var(--space-8);
+  }
+  .sobre-historia__head {
+    margin-bottom: var(--space-6);
+  }
+  .sobre-historia__item {
+    grid-template-columns: 1fr;
+    padding-block: var(--space-6);
+  }
+  .sobre-historia__item p {
+    grid-column: auto;
+  }
+
+  .sobre-fatos {
+    gap: var(--space-4);
+  }
+  .sobre-fatos strong {
+    font-size: 1.75rem;
+  }
+
+  .sobre-compare {
+    aspect-ratio: 1 / 1;
+    max-width: none;
+  }
+
+  .sobre-fundadora__foto {
+    max-width: none;
+  }
+}

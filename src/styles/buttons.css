@@ -1,0 +1,66 @@
+/* Sistema de botões reutilizável em todo o site */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  font-family: var(--font-sans);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  line-height: 1;
+  padding: 13px 24px;
+  border-radius: var(--radius-pill);
+  border: 1.5px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
+  user-select: none;
+  transition: transform var(--dur-fast) var(--ease-standard),
+    background-color var(--dur-fast) ease, border-color var(--dur-fast) ease,
+    color var(--dur-fast) ease, box-shadow var(--dur-fast) ease;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.btn--sm {
+  padding: 9px 18px;
+  font-size: var(--fs-xs);
+}
+
+/* Primário: preenchido, cor da marca */
+.btn--primary {
+  background: var(--brand-red);
+  color: #fff;
+}
+.btn--primary:hover {
+  background: var(--brand-red-dark);
+}
+
+/* Contorno: usado no header e ações discretas */
+.btn--outline {
+  background: transparent;
+  border-color: var(--color-border);
+  color: var(--color-ink);
+}
+.btn--outline:hover {
+  border-color: var(--color-ink);
+}
+
+/* Sobre fundo escuro */
+.btn--on-dark {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.35);
+  color: #fff;
+}
+.btn--on-dark:hover {
+  background: rgba(255, 255, 255, 0.18);
+  border-color: #fff;
+}
+
+.btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+}

@@ -1,0 +1,322 @@
+.hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  min-height: 82vh;
+  background-color: var(--color-dark);
+  display: flex;
+  align-items: center;
+}
+
+/* Foto ocupa a metade direita e se dissolve no fundo escuro à esquerda.
+   A largura nunca passa do tamanho real do arquivo (1256px): em telas
+   muito largas a foto não é esticada, o fundo escuro completa o resto. */
+.hero__media {
+  position: absolute;
+  inset: 0 0 0 auto;
+  width: min(72%, 1256px);
+  z-index: -1;
+  display: block;
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 42%);
+  mask-image: linear-gradient(to right, transparent 0%, #000 42%);
+}
+
+.hero__media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.hero__overlay {
+  width: 100%;
+  min-height: 82vh;
+  display: flex;
+  align-items: center;
+  background: linear-gradient(
+    100deg,
+    rgba(10, 10, 12, 0.6) 0%,
+    rgba(10, 10, 12, 0.3) 55%,
+    rgba(10, 10, 12, 0.1) 100%
+  );
+}
+
+@media (max-width: 760px) {
+  .hero,
+  .hero__overlay {
+    min-height: 88svh;
+  }
+  /* No celular usa a versão em retrato da foto, cobrindo a tela toda */
+  .hero__media {
+    inset: 0;
+    width: 100%;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+  .hero__media img {
+    object-position: 62% 20%;
+  }
+  .hero__overlay {
+    align-items: flex-end;
+    padding-block: var(--space-8) var(--space-7);
+    background: linear-gradient(
+      180deg,
+      rgba(10, 10, 12, 0.05) 0%,
+      rgba(10, 10, 12, 0.35) 38%,
+      rgba(10, 10, 12, 0.88) 100%
+    );
+  }
+}
+
+.hero__content {
+  max-width: 640px;
+  color: #fff;
+}
+
+.hero__kicker {
+  text-transform: uppercase;
+  letter-spacing: 1.6px;
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  color: var(--color-on-dark-soft);
+  margin: 0 0 var(--space-3);
+}
+
+.hero__content h1 {
+  font-size: var(--fs-3xl);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.04;
+  margin: 0 0 var(--space-5);
+}
+
+.hero__highlight {
+  color: var(--brand-red);
+}
+
+.hero__subtitle {
+  font-size: var(--fs-md);
+  line-height: 1.6;
+  color: var(--color-on-dark-soft);
+  max-width: 46ch;
+  margin: 0 0 var(--space-6);
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+}
+
+.services-section {
+  background: var(--color-bg-alt);
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-5);
+}
+
+.service-card {
+  background: var(--color-bg);
+  border: 1px solid var(--color-border-soft);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6) var(--space-5);
+  text-align: center;
+  transition: transform var(--dur-base) var(--ease-standard),
+    box-shadow var(--dur-base) var(--ease-standard);
+}
+
+.service-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+.service-card__icon {
+  width: 76px;
+  height: 76px;
+  margin: 0 auto var(--space-4);
+  border-radius: 50%;
+  background: var(--brand-red-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.service-card.is-visible .service-card__icon {
+  animation: icon-pop var(--dur-slow) var(--ease-standard) 200ms backwards;
+}
+
+@keyframes icon-pop {
+  from { opacity: 0; transform: scale(0.85); }
+}
+
+/* os arquivos têm margem transparente (o desenho ocupa ~1/3), por isso a
+   imagem é bem maior que o desenho que aparece */
+.service-card__icon img {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+}
+
+.service-card h3 {
+  font-size: var(--fs-md);
+  font-weight: 600;
+  margin: 0 0 var(--space-2);
+  color: var(--color-ink);
+}
+
+.service-card p {
+  font-size: var(--fs-sm);
+  line-height: 1.55;
+  color: var(--color-ink-soft);
+  margin: 0;
+}
+
+.gallery-section {
+  padding-block: calc(var(--space-9) + var(--space-3));
+}
+
+.phases-section {
+  background: var(--color-dark);
+  color: #fff;
+  text-align: center;
+}
+
+.phases-section__inner h2 {
+  font-size: var(--fs-2xl);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin: 0 0 var(--space-3);
+}
+
+.phases-section__inner p {
+  color: var(--color-on-dark-soft);
+  font-size: var(--fs-md);
+  margin: 0;
+}
+
+.stats-section__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-8);
+  align-items: center;
+}
+
+.stats-section__media img {
+  width: 100%;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+}
+
+.stats-section__numbers {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+}
+
+.stat-card {
+  background: var(--color-bg-alt);
+  border-radius: var(--radius-md);
+  padding: var(--space-5);
+  text-align: left;
+  transition: background-color var(--dur-fast) ease;
+}
+
+.stat-card:hover {
+  background: var(--brand-red-soft);
+}
+
+.stat-card h3 {
+  font-size: var(--fs-xl);
+  font-weight: 700;
+  color: var(--brand-red);
+  margin: 0 0 var(--space-1);
+}
+
+.stat-card p {
+  font-size: var(--fs-sm);
+  color: var(--color-ink-soft);
+  margin: 0;
+}
+
+/* Categorias */
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-5);
+}
+
+.category-card {
+  position: relative;
+  display: block;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  height: 340px;
+  text-decoration: none;
+  isolation: isolate;
+}
+
+.category-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--dur-slow) var(--ease-standard);
+}
+
+.category-card:hover img {
+  transform: scale(1.03);
+}
+
+.category-card__label {
+  position: absolute;
+  inset: auto 0 0 0;
+  padding: var(--space-5);
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.65), transparent);
+}
+
+.category-card__label span {
+  color: #fff;
+  font-weight: 600;
+  font-size: var(--fs-md);
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+@media (max-width: 1024px) {
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .categories-grid {
+    grid-template-columns: 1fr;
+  }
+  .stats-section__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 700px) {
+  .hero__content h1 {
+    font-size: var(--fs-2xl);
+  }
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+  .service-card__icon {
+    width: 68px;
+    height: 68px;
+  }
+  .service-card__icon img {
+    width: 54px;
+    height: 54px;
+  }
+  .stats-section__numbers {
+    grid-template-columns: 1fr;
+  }
+  .hero__actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
